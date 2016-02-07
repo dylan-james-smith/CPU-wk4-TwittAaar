@@ -1,8 +1,8 @@
-# Project 4 - CPU-TwittAaar
+# Project 4 - TwittAaar
 
-CPU-TwittAaar is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
+TwittAaar is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **X** hours spent in total
+Time spent: **2** hours spent in total
 
 ## User Stories
 
@@ -33,7 +33,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![Walkthrough - CPU-Ouch](walkthrough.gif)
+![Walkthrough - CPU-wk4-TwittAaar](walkthrough.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

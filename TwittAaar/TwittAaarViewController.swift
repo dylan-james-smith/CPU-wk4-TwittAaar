@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import BDBOAuth1Manager
+import AFNetworking
 
 class TwittAaarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        TwitterClient(
+        
         // Do any additional setup after loading the view.
     }
 
