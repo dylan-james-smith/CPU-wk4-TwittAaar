@@ -11,13 +11,30 @@ import BDBOAuth1Manager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-
+    var storyboard = UIStoryboard(name: "Main", bundle: nil)
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
+        
+        if User.currentUser != nil {
+            // Go to the Logged In screen
+
+            let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController") as UIViewController
+            window?.rootViewController = vc
+            
+        }
+        
         return true
+    }
+    
+    func userDidLogout() {
+        print("User did logout")
+        let vc = storyboard.instantiateInitialViewController()
+        window?.rootViewController = vc
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -31,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        // Called as part of the transition from the background to the inactive state here you can undo many of the changes made on entering the background.
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -42,29 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func application(app: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        TwitterClient.sharedInstance.fetchAccessTokenWithPath("oauth/access_token", method: "POST",requestToken:BDBOAuth1Credential(queryString: url.query), success: { (accessToken: BDBOAuth1Credential!) -> Void in
-            print("access token: success")
-                TwitterClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
-           
-                TwitterClient.sharedInstance.GET("1.1/account/verify_credentials.json", parameters: nil, success: {( operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
-                    print("user: \(response)")
-                    }, failure: {( operation: NSURLSessionDataTask?, error: NSError!) -> Void in
-                     print("user: Error")
-                })
-            
-                TwitterClient.sharedInstance.GET("1.1/account/home_timeline.json", parameters: nil, success: {( operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
-                print("home timeline: \(response)")
-                }, failure: {( operation: NSURLSessionDataTask?, error: NSError!) -> Void in
-                    print("home timeline: Error")
-            })
-            
-            }) { (error: NSError!) -> Void in
-            print("access token: failed")
-        }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        TwitterClient.sharedInstance.openURL(url)
         return true
     }
-
 
 }
 

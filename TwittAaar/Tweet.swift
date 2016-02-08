@@ -30,6 +30,7 @@ class Tweet: NSObject {
         
         for dictionary in array {
             tweets.append(Tweet(dictionary: dictionary))
+//            print("tweets: \(tweets)")
         }
         
         return tweets
