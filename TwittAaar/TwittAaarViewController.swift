@@ -8,7 +8,6 @@
 
 import UIKit
 import BDBOAuth1Manager
-import AFNetworking
 
 
 
@@ -30,9 +29,9 @@ class TwittAaarViewController: UIViewController {
         
         TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
         
-        TwitterClient.sharedInstance.fetchRequestTokenWithPath("oauth/request_token", method: "GET", callbackURL: NSURL(string: "cputwittaaar://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential!) -> Void in
+        TwitterClient.sharedInstance.fetchRequestTokenWithPath("oauth/request_token", method: "GET", callbackURL: NSURL(string: "heydylan://oauth"), scope: nil, success: { (requestToken: BDBOAuth1Credential!) -> Void in
             print("request token: success")
-            var authURL = NSURL(string:"https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")
+            let authURL = NSURL(string:"https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")
             UIApplication.sharedApplication().openURL(authURL!)
             }) { (error: NSError!) -> Void in
             print("request token: failed")
