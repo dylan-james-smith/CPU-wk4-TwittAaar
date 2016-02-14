@@ -64,7 +64,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.nameLabel.text = tweets![indexPath.row].user?.name
             cell.screenNameLabel.text = "@"+(tweets![indexPath.row].user?.screenname)!
             cell.tweetLabel.text = tweets![indexPath.row].text
-            cell.timeLabel.text = tweets![indexPath.row].createdAtString
+            cell.timeLabel.text = tweets![indexPath.row].timeSince
             
 //            cell.retweetCountLabel.text = tweets![indexPath.row].favorite_count
 //            cell.favoriteCountLabel.text = tweets![indexPath.row].
@@ -83,17 +83,17 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //                 toggle = indexPath NSUserDefults and or dictionary sets toggle state
         let type = "like"
         
-                if toggleLike == 1 {
-                    sender.setImage(UIImage(named: type+"-action"), forState: UIControlState.Normal)
-                    //      increment Pressed Button to API and set text color of count
-                    print(">>> toggle off -1")
-                    toggleLike = 0
-                }else{
-                    sender.setImage(UIImage(named: type+"-action-on"), forState: UIControlState.Normal)
-                    //      subtract Pressed Button to API and set text color of count
-                    print(">>> toggle on +1")
-                    toggleLike = 1
-                }
+        if toggleLike == 1 {
+            sender.setImage(UIImage(named: type+"-action"), forState: UIControlState.Normal)
+//      increment Pressed Button to API and set text color of count
+            print(">>> toggle off -1")
+            toggleLike = 0
+        }else{
+            sender.setImage(UIImage(named: type+"-action-on"), forState: UIControlState.Normal)
+//      subtract Pressed Button to API and set text color of count
+            print(">>> toggle on +1")
+            toggleLike = 1
+        }
         
         
     }

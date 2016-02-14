@@ -13,7 +13,8 @@ class Tweet: NSObject {
     var text: String?
     var createdAtString: String?
     var createdAt: NSDate?
-//    var timeSince: String?
+    var timePassed: Int?
+    var timeSince: String!
     
     init(dictionary: NSDictionary){
         user = User(dictionary: dictionary["user"] as! NSDictionary)
@@ -24,11 +25,29 @@ class Tweet: NSObject {
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
         createdAt = formatter.dateFromString(createdAtString!)
         
-//        let now = NSDate()
-//        let then = createdAt
-//        timeSince = String(String: now.timeIntervalSinceDate(then!))
-
-    
+//        Hacky time string d, h, or m
+        let now = NSDate()
+        let then = createdAt
+        timePassed = Int(now.timeIntervalSinceDate(then!))
+//        print(timePassed)
+        
+        if timePassed >= 86400{
+            timeSince = String(timePassed! / 86400)+"d"
+//            print(timeSince)
+        
+        }
+        if (3600..<86400).contains(timePassed!){
+            timeSince = String(timePassed!/3600)+"h"
+//            print(timeSince)
+        }
+        if (60..<3600).contains(timePassed!){
+            timeSince = String(timePassed!/60)+"m"
+//            print(timeSince)
+        }
+        if timePassed < 60 {
+            timeSince = String(timePassed)+"s"
+//            print(timeSince)
+        }
         
     }
     

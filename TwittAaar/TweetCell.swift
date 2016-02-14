@@ -30,10 +30,6 @@ class TweetCell: UITableViewCell {
     }
 
     
-//    @IBAction func onTapFav(sender: AnyObject) {
-//        favoriteButton.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Selected)
-//    }
-    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
