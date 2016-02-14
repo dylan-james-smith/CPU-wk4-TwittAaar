@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		680FE80D1C6A5D5300067738 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680FE80C1C6A5D5300067738 /* TweetCell.swift */; };
 		686BE05F1C66D8BC00A56649 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 686BE05E1C66D8BC00A56649 /* README.md */; };
 		6870BE011C66EDC000D86B6E /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6870BE001C66EDC000D86B6E /* TwitterClient.swift */; };
 		687EC6341C66D2E200F6765E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687EC6331C66D2E200F6765E /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		120C0D361D6060E01F0FE310 /* Pods-TwittAaar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwittAaar.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwittAaar/Pods-TwittAaar.release.xcconfig"; sourceTree = "<group>"; };
+		680FE80C1C6A5D5300067738 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		686BE05E1C66D8BC00A56649 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		6870BE001C66EDC000D86B6E /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		687EC6301C66D2E200F6765E /* TwittAaar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwittAaar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,7 @@
 		68D7E8A81C68A2A200E2D9A2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				680FE80C1C6A5D5300067738 /* TweetCell.swift */,
 				687EC6471C66D38E00F6765E /* TwittAaarViewController.swift */,
 				68D7E8A61C688D2C00E2D9A2 /* TweetsViewController.swift */,
 			);
@@ -252,6 +255,7 @@
 				6870BE011C66EDC000D86B6E /* TwitterClient.swift in Sources */,
 				686BE05F1C66D8BC00A56649 /* README.md in Sources */,
 				687EC6481C66D38E00F6765E /* TwittAaarViewController.swift in Sources */,
+				680FE80D1C6A5D5300067738 /* TweetCell.swift in Sources */,
 				68D7E8A51C6861AE00E2D9A2 /* Tweet.swift in Sources */,
 				68D7E8A71C688D2C00E2D9A2 /* TweetsViewController.swift in Sources */,
 				68D7E8A31C6861A000E2D9A2 /* User.swift in Sources */,
