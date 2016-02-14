@@ -24,6 +24,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         return Static.instance
     }
     
+    @available(iOS, deprecated=8.0) //suppress warning on deprecated GET from BDBOAuth1Manager's GET method (thanks Sarn!)
     func homeTimelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
         
         GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
@@ -53,7 +54,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                 self.loginCompletion?(user: nil, error: error)
         }
     }
-    
+    @available(iOS, deprecated=8.0) //suppress warning on deprecated GET from BDBOAuth1Manager's GET method (thanks Sarn!)
     func openURL(url: NSURL){
         
         fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential(queryString: url.query)!, success: { (accessToken: BDBOAuth1Credential!) -> Void in

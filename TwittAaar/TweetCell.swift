@@ -22,11 +22,18 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var favoriteCountLabel: UILabel!
     
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
     }
 
+    
+//    @IBAction func onTapFav(sender: AnyObject) {
+//        favoriteButton.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Selected)
+//    }
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

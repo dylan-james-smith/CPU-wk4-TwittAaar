@@ -14,7 +14,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var refreshControl: UIRefreshControl!
     @IBOutlet weak var tableView: UITableView!
     
-
+    var toggleLike = 0
+    var toggleRetweet = 0
+    
+    @available(iOS, deprecated=8.0) //suppress warning on deprecated GET from BDBOAuth1Manager's GET method (thanks Sarn!)
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -32,9 +35,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
 //            print(tweets)
-            
-            
         }
+        
         
         // Do any additional setup after loading the view.
     }
@@ -46,7 +48,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
  
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        NSLog(">>>tableView numberOfRowsInSection")
+//        NSLog(">>>tableView numberOfRowsInSection")
         if tweets != nil {
             return tweets!.count
         } else {
@@ -55,22 +57,67 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
         func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            NSLog(">>>tableView cellForRowAtIndexPath")
+//            NSLog(">>>tableView cellForRowAtIndexPath")
             let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
             
             cell.profileImageView.setImageWithURL(NSURL(string: tweets![indexPath.row].user!.profileImageUrl!)!)
             cell.nameLabel.text = tweets![indexPath.row].user?.name
             cell.screenNameLabel.text = "@"+(tweets![indexPath.row].user?.screenname)!
             cell.tweetLabel.text = tweets![indexPath.row].text
-//            cell.retweetCountLabel.text = tweets![indexPath.row].
+            cell.timeLabel.text = tweets![indexPath.row].createdAtString
+            
+//            cell.retweetCountLabel.text = tweets![indexPath.row].favorite_count
 //            cell.favoriteCountLabel.text = tweets![indexPath.row].
             
+           
             return cell
         }
+    
     func onRefresh(){
         tableView.reloadData()
         self.refreshControl.endRefreshing()
     }
+    
+
+    @IBAction func onLike(sender: AnyObject) {
+//                 toggle = indexPath NSUserDefults and or dictionary sets toggle state
+        let type = "like"
+        
+                if toggleLike == 1 {
+                    sender.setImage(UIImage(named: type+"-action"), forState: UIControlState.Normal)
+                    //      increment Pressed Button to API and set text color of count
+                    print(">>> toggle off -1")
+                    toggleLike = 0
+                }else{
+                    sender.setImage(UIImage(named: type+"-action-on"), forState: UIControlState.Normal)
+                    //      subtract Pressed Button to API and set text color of count
+                    print(">>> toggle on +1")
+                    toggleLike = 1
+                }
+        
+        
+    }
+    
+    @IBAction func onRetweet(sender: AnyObject) {
+        //                 toggle = indexPath NSUserDefults and or dictionary sets toggle state
+        let type = "retweet"
+        
+        if toggleRetweet == 1 {
+            sender.setImage(UIImage(named: type+"-action"), forState: UIControlState.Normal)
+            //      increment Pressed Button to API and set text color of count
+            print(">>> toggle off -1")
+            toggleRetweet = 0
+        }else{
+            sender.setImage(UIImage(named: type+"-action-on"), forState: UIControlState.Normal)
+            //      subtract Pressed Button to API and set text color of count
+            print(">>> toggle on +1")
+            toggleRetweet = 1
+        }
+        
+        
+    }
+
+    
     
     @IBAction func onLogout(sender: AnyObject) {
         User.currentUser?.logout()

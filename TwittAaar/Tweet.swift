@@ -13,6 +13,7 @@ class Tweet: NSObject {
     var text: String?
     var createdAtString: String?
     var createdAt: NSDate?
+//    var timeSince: String?
     
     init(dictionary: NSDictionary){
         user = User(dictionary: dictionary["user"] as! NSDictionary)
@@ -22,6 +23,12 @@ class Tweet: NSObject {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
         createdAt = formatter.dateFromString(createdAtString!)
+        
+//        let now = NSDate()
+//        let then = createdAt
+//        timeSince = String(String: now.timeIntervalSinceDate(then!))
+
+    
         
     }
     
