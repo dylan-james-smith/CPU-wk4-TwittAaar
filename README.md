@@ -12,7 +12,7 @@ The following **required** functionality is completed:
 - [x] User can view last 20 tweets from their home timeline
 - [x] The current signed in user will be persisted across restarts
 - [x] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
-- [ ] Retweeting and favoriting should increment the retweet and favorite count.
+- [x] Retweeting and favoriting should increment the retweet and favorite count.
 
 The following **optional** features are implemented:
 
@@ -24,6 +24,7 @@ The following **additional** features are implemented:
 
 - [ ] List anything else that you can get done to improve the app functionality!
 - [x] Bird!
+- [x] Retweet centered between reply and like on rotate
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
