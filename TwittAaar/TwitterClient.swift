@@ -29,7 +29,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         
         GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
             let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
-//            print(tweets)
+            print(tweets)
             completion(tweets: tweets, error: nil)
             
             }, failure: { (operation:NSURLSessionDataTask?, error: NSError) -> Void in
@@ -38,6 +38,21 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
         
     }
+    
+//    @available(iOS, deprecated=8.0) //suppress warning on deprecated GET from BDBOAuth1Manager's GET method (thanks Sarn!)
+//    func favoritesCreateWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
+//        
+//        GET("1.1/favorites/create.json", parameters: params, success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
+//            let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+//            //            print(tweets)
+//            completion(tweets: tweets, error: nil)
+//            
+//            }, failure: { (operation:NSURLSessionDataTask?, error: NSError) -> Void in
+//                print("home timeline: ERROR")
+//                completion(tweets: nil, error: error)
+//        })
+//        
+//    }
     
     func loginWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
         

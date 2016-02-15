@@ -66,11 +66,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.tweetLabel.text = tweets![indexPath.row].text
             cell.timeLabel.text = tweets![indexPath.row].timeSince
             
-//            cell.retweetCountLabel.text = tweets![indexPath.row].favorite_count
-//            cell.favoriteCountLabel.text = tweets![indexPath.row].
+            cell.retweetCountLabel.text = String(tweets![indexPath.row].retweetCount!)
+            cell.favoriteCountLabel.text = String(tweets![indexPath.row].favoritesCount!)
             
-        
-           
+            
+            
             return cell
         }
     
