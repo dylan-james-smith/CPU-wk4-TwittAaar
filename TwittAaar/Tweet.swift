@@ -45,7 +45,7 @@ class Tweet: NSObject {
 //            print(timeSince)
         }
         if timePassed < 60 {
-            timeSince = String(timePassed)+"s"
+            timeSince = String(timePassed!)+"s"
 //            print(timeSince)
         }
         

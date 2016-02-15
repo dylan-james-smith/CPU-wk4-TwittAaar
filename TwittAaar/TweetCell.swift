@@ -21,17 +21,24 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var favoriteCountLabel: UILabel!
     
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         // Initialization code
+        NSLog(">>>awakeFromNib")
+        profileImageView.layer.cornerRadius = 4
+        profileImageView.clipsToBounds = true
+//        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
     }
-
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        NSLog(">>>layoutSubviews")
+    }
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        NSLog(">>>setSelected")
 
         // Configure the view for the selected state
     }
