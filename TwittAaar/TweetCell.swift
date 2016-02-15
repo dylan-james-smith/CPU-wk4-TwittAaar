@@ -28,6 +28,19 @@ class TweetCell: UITableViewCell {
 //        NSLog(">>>awakeFromNib")
         profileImageView.layer.cornerRadius = 4
         profileImageView.clipsToBounds = true
+        
+//        retweetCountLabel.textColor = UIColor(
+//            red: 0x19/255,
+//            green: 0xcf/255,
+//            blue: 0x86/255,
+//            alpha: 1.0)
+//        
+//        favoriteCountLabel.textColor = UIColor(
+//            red: 0xe8/255,
+//            green: 0x1c/255,
+//            blue: 0x4f/255,
+//            alpha: 1.0)
+        
 //        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
     }
     

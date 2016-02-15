@@ -69,6 +69,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //            cell.retweetCountLabel.text = tweets![indexPath.row].favorite_count
 //            cell.favoriteCountLabel.text = tweets![indexPath.row].
             
+        
            
             return cell
         }
@@ -98,20 +99,31 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    @IBAction func onRetweet(sender: AnyObject) {
+    @IBAction func onRetweet(sender: UIButton) {
         //                 toggle = indexPath NSUserDefults and or dictionary sets toggle state
-        let type = "retweet"
-        
-        if toggleRetweet == 1 {
-            sender.setImage(UIImage(named: type+"-action"), forState: UIControlState.Normal)
-            //      increment Pressed Button to API and set text color of count
-            print(">>> toggle off -1")
-            toggleRetweet = 0
-        }else{
-            sender.setImage(UIImage(named: type+"-action-on"), forState: UIControlState.Normal)
-            //      subtract Pressed Button to API and set text color of count
-            print(">>> toggle on +1")
-            toggleRetweet = 1
+
+            let type = "retweet"
+            
+            if toggleRetweet == 1 {
+                sender.setImage(UIImage(named: type+"-action"), forState: UIControlState.Normal)
+                //      increment Pressed Button to API and set text color of count
+//                retweetCountLabel.textColor = UIColor(
+//                    red: 0x19/255,
+//                    green: 0xcf/255,
+//                    blue: 0x86/255,
+//                    alpha: 1.0)
+                print(">>> toggle off -1")
+                toggleRetweet = 0
+            }else{
+                sender.setImage(UIImage(named: type+"-action-on"), forState: UIControlState.Normal)
+                //      subtract Pressed Button to API and set text color of count
+//                retweetCountLabel.textColor = UIColor(
+//                    red: 0xaa/255,
+//                    green: 0xb8/255,
+//                    blue: 0xc2/255,
+//                    alpha: 1.0)
+                print(">>> toggle on +1")
+                toggleRetweet = 1
         }
         
         
