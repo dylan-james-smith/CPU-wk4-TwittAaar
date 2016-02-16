@@ -33,10 +33,7 @@ class TweetCell: UITableViewCell {
             tweetID = tweet.id
             retweetCountLabel.text = String(tweet.retweetCount!)
             favoriteCountLabel.text = String(tweet.favoritesCount!)
-        
-            //            hide count text if 0
-            retweetCountLabel.text! == "0" ? (retweetCountLabel.hidden = true) : (retweetCountLabel.hidden = false)
-            favoriteCountLabel.text! == "0" ? (favoriteCountLabel.hidden = true) : (favoriteCountLabel.hidden = false)
+
             
             //            check if retweet button and text is "on"
             if NSUserDefaults.standardUserDefaults().boolForKey("toggleRetweet"+tweet.id){
@@ -47,11 +44,18 @@ class TweetCell: UITableViewCell {
             }
             //            check if favorite button and text is "on"
             if NSUserDefaults.standardUserDefaults().boolForKey("toggleFavorite"+tweet.id){
+                print("default toogleFavorite")
                 favoriteButton.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Normal)
                 favoriteCountLabel.textColor = UIColor(red: 0xe8/255, green: 0x1c/255, blue: 0x4f/255, alpha: 1.0)
 //                count text mockup
-                retweetCountLabel.text = String(Int(tweet.favoritesCount!) + 1)
+                favoriteCountLabel.text = String(Int(tweet.favoritesCount!) + 1)
             }
+            
+            //            hide count text if 0
+            print(retweetCountLabel.text!)
+            retweetCountLabel.text! == "0" ? (retweetCountLabel.hidden = true) : (retweetCountLabel.hidden = false)
+            print(favoriteCountLabel.text!)
+            favoriteCountLabel.text! == "0" ? (favoriteCountLabel.hidden = true) : (favoriteCountLabel.hidden = false)
             
         }
     }

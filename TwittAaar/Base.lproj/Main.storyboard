@@ -201,7 +201,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ec4-5n-PVf">
-                        <barButtonItem key="leftBarButtonItem" image="Twitter_logo_blue_32" id="DNX-Po-0JH"/>
+                        <barButtonItem key="leftBarButtonItem" image="Icon" id="DNX-Po-0JH">
+                            <inset key="imageInsets" minX="-10" minY="0.0" maxX="0.0" maxY="-7"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="f7i-dJ-WXf">
                             <connections>
                                 <action selector="onLogout:" destination="boX-aa-MH0" id="uBy-0x-MVa"/>
@@ -236,8 +238,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Icon" width="57" height="57"/>
         <image name="Icon-72" width="72" height="72"/>
-        <image name="Twitter_logo_blue_32" width="32" height="32"/>
         <image name="like-action" width="54" height="72"/>
         <image name="reply-action_0" width="65" height="72"/>
         <image name="retweet-action" width="75" height="72"/>
