@@ -14,12 +14,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var refreshControl: UIRefreshControl!
     @IBOutlet weak var tableView: UITableView!
     
-    var toggleLike = 0
-    var toggleRetweet = 0
-    
     @available(iOS, deprecated=8.0) //suppress warning on deprecated GET from BDBOAuth1Manager's GET method (thanks Sarn!)
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -34,7 +32,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.tweets = tweets
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
-//            print(tweets)
+            
         }
         
         
@@ -58,77 +56,24 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 //            NSLog(">>>tableView cellForRowAtIndexPath")
-        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
+        let cell =  tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
-        cell.profileImageView.setImageWithURL(NSURL(string: tweets![indexPath.row].user!.profileImageUrl!)!)
-        cell.nameLabel.text = tweets![indexPath.row].user?.name
-        cell.screenNameLabel.text = "@"+(tweets![indexPath.row].user?.screenname)!
-        cell.tweetLabel.text = tweets![indexPath.row].text
-        cell.timeLabel.text = tweets![indexPath.row].timeSince
-        
-        cell.retweetCountLabel.text = String(tweets![indexPath.row].retweetCount!)
-        cell.favoriteCountLabel.text = String(tweets![indexPath.row].favoritesCount!)
-        
-        
+        cell.selectionStyle = .None
+        cell.tweet = tweets![indexPath.row]
         
         return cell
     }
     
+    @available(iOS, deprecated=8.0) //suppress warning on deprecated GET from BDBOAuth1Manager's GET method (thanks Sarn!)
     func onRefresh(){
-        tableView.reloadData()
-        self.refreshControl.endRefreshing()
+//            NSLog(">>>onRefresh")
+        TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
+            self.tweets = tweets
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
     }
     
-
-    @IBAction func onLike(sender: AnyObject) {
-//                 toggle = indexPath NSUserDefults and or dictionary sets toggle state
-        let type = "like"
-        
-        if toggleLike == 1 {
-            sender.setImage(UIImage(named: type+"-action"), forState: UIControlState.Normal)
-//      increment Pressed Button to API and set text color of count
-            print(">>> toggle off -1")
-            toggleLike = 0
-        }else{
-            sender.setImage(UIImage(named: type+"-action-on"), forState: UIControlState.Normal)
-//      subtract Pressed Button to API and set text color of count
-            print(">>> toggle on +1")
-            toggleLike = 1
-        }
-        
-        
-    }
-    
-    @IBAction func onRetweet(sender: UIButton) {
-        //                 toggle = indexPath NSUserDefults and or dictionary sets toggle state
-
-            let type = "retweet"
-            
-            if toggleRetweet == 1 {
-                sender.setImage(UIImage(named: type+"-action"), forState: UIControlState.Normal)
-                //      increment Pressed Button to API and set text color of count
-//                retweetCountLabel.textColor = UIColor(
-//                    red: 0x19/255,
-//                    green: 0xcf/255,
-//                    blue: 0x86/255,
-//                    alpha: 1.0)
-                print(">>> toggle off -1")
-                toggleRetweet = 0
-            }else{
-                sender.setImage(UIImage(named: type+"-action-on"), forState: UIControlState.Normal)
-                //      subtract Pressed Button to API and set text color of count
-//                retweetCountLabel.textColor = UIColor(
-//                    red: 0xaa/255,
-//                    green: 0xb8/255,
-//                    blue: 0xc2/255,
-//                    alpha: 1.0)
-                print(">>> toggle on +1")
-                toggleRetweet = 1
-        }
-        
-        
-    }
-
     
     
     @IBAction func onLogout(sender: AnyObject) {

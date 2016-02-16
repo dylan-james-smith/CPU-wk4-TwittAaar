@@ -17,15 +17,17 @@ class Tweet: NSObject {
     var timeSince: String!
     var retweetCount: NSNumber?
     var favoritesCount: NSNumber?
+    var id: String
     
     init(dictionary: NSDictionary){
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         text = dictionary["text"] as? String
         retweetCount = dictionary["retweet_count"] as? Int
         favoritesCount = dictionary["favorite_count"] as? Int
+        id = String(dictionary["id"]!)
         
         
-//                   print(dictionary)
+
 //        Time keeps on tickin' tickin' tickin'
         createdAtString = dictionary["created_at"] as? String
         let formatter = NSDateFormatter()
@@ -56,6 +58,7 @@ class Tweet: NSObject {
             timeSince = String(timePassed!)+"s"
 //            print(timeSince)
         }
+//        End Times
         
         
     }

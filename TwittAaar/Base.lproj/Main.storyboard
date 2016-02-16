@@ -17,15 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eib-72-BrX">
-                                <rect key="frame" x="107" y="269" width="107" height="30"/>
-                                <state key="normal" title="Login to Twitter"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eib-72-BrX">
+                                <rect key="frame" x="61" y="248" width="198" height="72"/>
+                                <state key="normal" title="Login to Twitter" image="Icon-72">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="onLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2RZ-nY-Hel"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Eib-72-BrX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4iP-3b-MXU"/>
                             <constraint firstItem="Eib-72-BrX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eE8-0k-9Dy"/>
@@ -79,7 +81,7 @@
                                                             </constraints>
                                                             <state key="normal" image="retweet-action"/>
                                                             <connections>
-                                                                <action selector="onRetweet:" destination="boX-aa-MH0" eventType="touchUpInside" id="yuM-h3-yMW"/>
+                                                                <action selector="onRetweet:" destination="pL3-M6-mwd" eventType="touchUpInside" id="pp6-QI-sRR"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -95,7 +97,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Dylan James Smith " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSG-xn-IWG">
                                                     <rect key="frame" x="62" y="6" width="119" height="15"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@BlahHaBlah" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8F-RK-zKq">
@@ -119,7 +121,7 @@
                                                     </constraints>
                                                     <state key="normal" title="&lt;3" image="like-action"/>
                                                     <connections>
-                                                        <action selector="onLike:" destination="boX-aa-MH0" eventType="touchUpInside" id="I6p-OS-ydZ"/>
+                                                        <action selector="onFavorite:" destination="pL3-M6-mwd" eventType="touchUpInside" id="QpH-Dd-oOI"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeb-2v-a7W">
@@ -234,6 +236,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Icon-72" width="72" height="72"/>
         <image name="Twitter_logo_blue_32" width="32" height="32"/>
         <image name="like-action" width="54" height="72"/>
         <image name="reply-action_0" width="65" height="72"/>

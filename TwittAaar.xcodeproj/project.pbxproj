@@ -87,7 +87,7 @@
 		681E701F1C727DCD000545F8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				681E700C1C727DA8000545F8 /* TweetsNavigationController.swift */,
+				681E70221C729E61000545F8 /* NavCon */,
 				681E700D1C727DA8000545F8 /* TweetsViewController.swift */,
 				681E700E1C727DA8000545F8 /* TwittAaarViewController.swift */,
 			);
@@ -109,6 +109,14 @@
 				681E70101C727DA8000545F8 /* User.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		681E70221C729E61000545F8 /* NavCon */ = {
+			isa = PBXGroup;
+			children = (
+				681E700C1C727DA8000545F8 /* TweetsNavigationController.swift */,
+			);
+			name = NavCon;
 			sourceTree = "<group>";
 		};
 		687EC6271C66D2E200F6765E = {
