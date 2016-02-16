@@ -56,23 +56,23 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-        func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 //            NSLog(">>>tableView cellForRowAtIndexPath")
-            let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
-            
-            cell.profileImageView.setImageWithURL(NSURL(string: tweets![indexPath.row].user!.profileImageUrl!)!)
-            cell.nameLabel.text = tweets![indexPath.row].user?.name
-            cell.screenNameLabel.text = "@"+(tweets![indexPath.row].user?.screenname)!
-            cell.tweetLabel.text = tweets![indexPath.row].text
-            cell.timeLabel.text = tweets![indexPath.row].timeSince
-            
-            cell.retweetCountLabel.text = String(tweets![indexPath.row].retweetCount!)
-            cell.favoriteCountLabel.text = String(tweets![indexPath.row].favoritesCount!)
-            
-            
-            
-            return cell
-        }
+        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
+        
+        cell.profileImageView.setImageWithURL(NSURL(string: tweets![indexPath.row].user!.profileImageUrl!)!)
+        cell.nameLabel.text = tweets![indexPath.row].user?.name
+        cell.screenNameLabel.text = "@"+(tweets![indexPath.row].user?.screenname)!
+        cell.tweetLabel.text = tweets![indexPath.row].text
+        cell.timeLabel.text = tweets![indexPath.row].timeSince
+        
+        cell.retweetCountLabel.text = String(tweets![indexPath.row].retweetCount!)
+        cell.favoriteCountLabel.text = String(tweets![indexPath.row].favoritesCount!)
+        
+        
+        
+        return cell
+    }
     
     func onRefresh(){
         tableView.reloadData()
