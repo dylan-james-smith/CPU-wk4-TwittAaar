@@ -26,7 +26,6 @@ class Tweet: NSObject {
         favoritesCount = dictionary["favorite_count"] as? Int
         id = String(dictionary["id"]!)
         
-        
 
 //        Time keeps on tickin' tickin' tickin'
         createdAtString = dictionary["created_at"] as? String
@@ -68,7 +67,7 @@ class Tweet: NSObject {
         
         for dictionary in array {
             tweets.append(Tweet(dictionary: dictionary))
-//            print("tweets: \(tweets)")
+//            print("tweets: \(dictionary)")
         }
         
         return tweets

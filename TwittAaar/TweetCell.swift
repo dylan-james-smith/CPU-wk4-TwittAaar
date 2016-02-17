@@ -8,6 +8,8 @@
 
 import UIKit
 
+//protocol 
+
 class TweetCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
@@ -33,28 +35,32 @@ class TweetCell: UITableViewCell {
             tweetID = tweet.id
             retweetCountLabel.text = String(tweet.retweetCount!)
             favoriteCountLabel.text = String(tweet.favoritesCount!)
-
             
-            //            check if retweet button and text is "on"
+//            Check for Retweet or Like
             if NSUserDefaults.standardUserDefaults().boolForKey("toggleRetweet"+tweet.id){
                 retweetButton.setImage(UIImage(named: "retweet-action-on"), forState: UIControlState.Normal)
                 retweetCountLabel.textColor = UIColor(red: 0x19/255, green: 0xcf/255, blue: 0x86/255, alpha: 1.0)
-//                count text mockup
+                //                count text mockup
                 retweetCountLabel.text = String(Int(tweet.retweetCount!) + 1)
-            }
-            //            check if favorite button and text is "on"
-            if NSUserDefaults.standardUserDefaults().boolForKey("toggleFavorite"+tweet.id){
-                print("default toogleFavorite")
-                favoriteButton.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Normal)
-                favoriteCountLabel.textColor = UIColor(red: 0xe8/255, green: 0x1c/255, blue: 0x4f/255, alpha: 1.0)
-//                count text mockup
-                favoriteCountLabel.text = String(Int(tweet.favoritesCount!) + 1)
+            }else{
+                
+                retweetButton.setImage(UIImage(named: "retweet-action"), forState: UIControlState.Normal)
+                retweetCountLabel.textColor = UIColor(red: 0xaa/255, green: 0xb8/255, blue: 0xc2/255, alpha: 1.0)
             }
             
-            //            hide count text if 0
-            print(retweetCountLabel.text!)
+            //            check if favorite button and text is "on"
+            if NSUserDefaults.standardUserDefaults().boolForKey("toggleFavorite"+tweet.id){
+                favoriteButton.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Normal)
+                favoriteCountLabel.textColor = UIColor(red: 0xe8/255, green: 0x1c/255, blue: 0x4f/255, alpha: 1.0)
+                //                count text mockup
+                favoriteCountLabel.text = String(Int(tweet.favoritesCount!) + 1)
+            }else{
+                favoriteButton.setImage(UIImage(named: "like-action"), forState: UIControlState.Normal)
+                favoriteCountLabel.textColor = UIColor(red: 0xaa/255, green: 0xb8/255, blue: 0xc2/255, alpha: 1.0)
+            }
+            
+//          hide count text if 0
             retweetCountLabel.text! == "0" ? (retweetCountLabel.hidden = true) : (retweetCountLabel.hidden = false)
-            print(favoriteCountLabel.text!)
             favoriteCountLabel.text! == "0" ? (favoriteCountLabel.hidden = true) : (favoriteCountLabel.hidden = false)
             
         }
@@ -107,14 +113,14 @@ class TweetCell: UITableViewCell {
             favoriteCountLabel.textColor =  UIColor(red: 0xaa/255, green: 0xb8/255, blue: 0xc2/255, alpha: 1.0)
             favoriteCountLabel.text = String(tweet.favoritesCount!)
             favoriteCountLabel.text! == "0" ? (favoriteCountLabel.hidden = true) : (favoriteCountLabel.hidden = false)
-            print(">>> toggle faviorite off -1")
+//            print(">>> toggle faviorite off -1")
             NSUserDefaults.standardUserDefaults().setBool(false, forKey:"toggleFavorite"+tweet.id)
         }else{
             favoriteButton.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Normal)
             favoriteCountLabel.textColor =  UIColor(red: 0xe8/255, green: 0x1c/255, blue: 0x4f/255, alpha: 1.0)
             favoriteCountLabel.text = String(Int(tweet.favoritesCount!) + 1)
             favoriteCountLabel.hidden = false
-            print(">>> toggle faviorite on +1")
+//            print(">>> toggle faviorite on +1")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey:"toggleFavorite"+tweet.id)
         }
     }
