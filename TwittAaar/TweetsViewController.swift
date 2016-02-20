@@ -18,6 +18,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let icon = UIImage(named: "Icon.png")
+        let iconImageView = UIImageView(image: icon)
+        self.navigationItem.titleView = iconImageView
+//        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -73,7 +78,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.refreshControl.endRefreshing()
         }
     }
-    
     
     
     @IBAction func onLogout(sender: AnyObject) {

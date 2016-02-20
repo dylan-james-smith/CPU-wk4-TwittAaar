@@ -19,8 +19,10 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var retweetBigButton: UIButton!
     @IBOutlet weak var retweetCountLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var favoriteBigButton: UIButton!
     @IBOutlet weak var favoriteCountLabel: UILabel!
     
     var tweetID: String = ""
@@ -94,14 +96,14 @@ class TweetCell: UITableViewCell {
             retweetCountLabel.textColor =  UIColor(red: 0xaa/255, green: 0xb8/255, blue: 0xc2/255, alpha: 1.0)
             retweetCountLabel.text = String(tweet.retweetCount!)
             retweetCountLabel.text! == "0" ? (retweetCountLabel.hidden = true) : (retweetCountLabel.hidden = false)
-            print(">>> toggle retweet off (-1)")
+//            print(">>> toggle retwee off (-1)")
             NSUserDefaults.standardUserDefaults().setBool(false, forKey:"toggleRetweet"+tweet.id)
         }else{
             retweetButton.setImage(UIImage(named: "retweet-action-on"), forState: UIControlState.Normal)
             retweetCountLabel.textColor =  UIColor(red: 0x19/255, green: 0xcf/255, blue: 0x86/255, alpha: 1.0)
             retweetCountLabel.text = String(Int(tweet.retweetCount!) + 1)
             retweetCountLabel.hidden = false
-            print(">>> toggle retweet on (+1)")
+//            print(">>> toggle retweet on (+1)")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey:"toggleRetweet"+tweet.id)
         }
     }

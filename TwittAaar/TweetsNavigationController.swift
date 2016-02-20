@@ -13,6 +13,9 @@ class TweetsNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        let icon = UIImage(named: "Icon.png")
+//        let iconImageView = UIImageView(image: icon)
+//        self.navigationItem.titleView = iconImageView
         // Do any additional setup after loading the view.
     }
 
