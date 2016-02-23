@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.barTintColor = UIColor.whiteColor()
+        navigationBarAppearace.tintColor = UIColor.whiteColor()
 
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Go to the Logged In screen
 
             let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsNavigationController") as! UINavigationController
-//            vc.navigationBar.backgroundColor = UIColor.whiteColor()
             window?.rootViewController = vc
             
         }

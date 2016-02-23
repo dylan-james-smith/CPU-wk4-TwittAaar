@@ -27,6 +27,7 @@ class TweetCell: UITableViewCell {
     
     var tweetID: String = ""
     var tweet: Tweet! {
+        
         didSet {
             profileImageView.setImageWithURL(NSURL(string: tweet.user!.profileImageUrl!)!)
             nameLabel.text = tweet.user!.name
@@ -45,7 +46,6 @@ class TweetCell: UITableViewCell {
                 //                count text mockup
                 retweetCountLabel.text = String(Int(tweet.retweetCount!) + 1)
             }else{
-                
                 retweetButton.setImage(UIImage(named: "retweet-action"), forState: UIControlState.Normal)
                 retweetCountLabel.textColor = UIColor(red: 0xaa/255, green: 0xb8/255, blue: 0xc2/255, alpha: 1.0)
             }
@@ -74,6 +74,12 @@ class TweetCell: UITableViewCell {
 //        NSLog(">>>awakeFromNib")
         profileImageView.layer.cornerRadius = 4
         profileImageView.clipsToBounds = true
+        
+//        // add gesture recognizer
+//        let tapGestureRecognizer = UITapGestureRecognizer()
+//        tapGestureRecognizer.addTarget(self, action: "imageViewTapped:")
+//        profileImageView.addGestureRecognizer(tapGestureRecognizer)
+        
 //        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
     }
     
@@ -126,6 +132,7 @@ class TweetCell: UITableViewCell {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey:"toggleFavorite"+tweet.id)
         }
     }
+    
     
 
 }

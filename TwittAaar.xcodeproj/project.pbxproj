@@ -18,6 +18,8 @@
 		681E701B1C727DA8000545F8 /* TwittAaarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681E700E1C727DA8000545F8 /* TwittAaarViewController.swift */; };
 		681E701C1C727DA8000545F8 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681E700F1C727DA8000545F8 /* TwitterClient.swift */; };
 		681E701D1C727DA8000545F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681E70101C727DA8000545F8 /* User.swift */; };
+		682ACA731C7859E900E68330 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682ACA721C7859E900E68330 /* ProfileViewController.swift */; };
+		688FE24D1C7AFB1A0047BEC8 /* Profile2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688FE24C1C7AFB1A0047BEC8 /* Profile2ViewController.swift */; };
 		AFF9E614D2E4C54451524E31 /* Pods_TwittAaar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F07822F5525DCB0AFB52CCF0 /* Pods_TwittAaar.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +37,9 @@
 		681E700E1C727DA8000545F8 /* TwittAaarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwittAaarViewController.swift; sourceTree = "<group>"; };
 		681E700F1C727DA8000545F8 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		681E70101C727DA8000545F8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		682ACA721C7859E900E68330 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		687EC6301C66D2E200F6765E /* TwittAaar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwittAaar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		688FE24C1C7AFB1A0047BEC8 /* Profile2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile2ViewController.swift; sourceTree = "<group>"; };
 		7CC727EEEDF8B0D0D8A50541 /* Pods-TwittAaar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwittAaar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwittAaar/Pods-TwittAaar.debug.xcconfig"; sourceTree = "<group>"; };
 		F07822F5525DCB0AFB52CCF0 /* Pods_TwittAaar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwittAaar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -87,6 +91,8 @@
 		681E701F1C727DCD000545F8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				682ACA721C7859E900E68330 /* ProfileViewController.swift */,
+				688FE24C1C7AFB1A0047BEC8 /* Profile2ViewController.swift */,
 				681E70221C729E61000545F8 /* NavCon */,
 				681E700D1C727DA8000545F8 /* TweetsViewController.swift */,
 				681E700E1C727DA8000545F8 /* TwittAaarViewController.swift */,
@@ -272,9 +278,11 @@
 				681E701C1C727DA8000545F8 /* TwitterClient.swift in Sources */,
 				681E70111C727DA8000545F8 /* AppDelegate.swift in Sources */,
 				681E701B1C727DA8000545F8 /* TwittAaarViewController.swift in Sources */,
+				688FE24D1C7AFB1A0047BEC8 /* Profile2ViewController.swift in Sources */,
 				681E701A1C727DA8000545F8 /* TweetsViewController.swift in Sources */,
 				681E701D1C727DA8000545F8 /* User.swift in Sources */,
 				681E70161C727DA8000545F8 /* Tweet.swift in Sources */,
+				682ACA731C7859E900E68330 /* ProfileViewController.swift in Sources */,
 				681E70181C727DA8000545F8 /* TweetCell.swift in Sources */,
 				681E70191C727DA8000545F8 /* TweetsNavigationController.swift in Sources */,
 			);
@@ -395,6 +403,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.heydylan.TwittAaar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -410,6 +419,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.heydylan.TwittAaar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
