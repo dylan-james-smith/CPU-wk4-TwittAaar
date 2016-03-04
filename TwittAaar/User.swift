@@ -14,22 +14,93 @@ let userDidLoginNotification = "userDidLoginNotification"
 let userDidLogoutNotification = "userDidLogoutNotification"
 
 class User: NSObject {
+    
+    var dictionary: NSDictionary
     var name: String?
     var screenname: String?
     var profileImageUrl: String?
+    var backgroundImageURL: String?
     var tagline: String?
-    var dictionary: NSDictionary
+    var location: String?
+    var website: AnyObject?
+    var followingCount: Float?
+    var followingCountStr: String?
+    var followerCount: Float?
+    var followerCountStr: String?
+    var tweetsCount: NSNumber?
+    var id: Int?
+    
+    var formatFloat: String?
     
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
         
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
-        profileImageUrl = dictionary["profile_image_url"] as? String
+        profileImageUrl = dictionary["profile_image_url_https"] as? String
+        backgroundImageURL = dictionary["profile_banner_url"] as? String
         tagline = dictionary["description"] as? String
+        location = dictionary["location"] as? String
         
+        if let entities = dictionary["entities"] as? NSDictionary{
+            if let tempURL = entities["url"] as? NSDictionary{
+                if let tempURLS = tempURL["urls"] as? NSDictionary{
+                    website = tempURLS["display_url"] //as? String
+                    print("tempURLS",(tempURLS), "web",website)
+                }
+                print("tempURL", (tempURL))
+            }
+            print("entit",(entities))
+        }
+        
+        
+        
+        followingCount = dictionary["friends_count"] as? Float
+        followerCount = dictionary["followers_count"] as? Float
+        tweetsCount = dictionary["statuses_count"] as? Int
+        id = dictionary["id"] as? Int
+
 //        print("V",  (dictionary))
 //        print("L", (dictionary))
+
+        if followingCount! > 1050000{
+            if followingCount!%1000000 > 500000 {
+                formatFloat = "%.01f"
+            }else{
+                formatFloat = "%.00f"
+            }
+            print(followingCount!%1000000,formatFloat)
+            followerCountStr = (String(format: formatFloat!,followingCount!/1000000)+"M")
+        }else if followingCount! > 950000{
+            followingCountStr = "1M"
+        }else if followingCount! > 1070{
+            followingCountStr = (String(format: "%.01f",followingCount!/1000)+"K")
+        }else if followingCount! > 950{
+            followingCountStr = "1K"
+        }else{
+            followingCountStr = String(format:"%.00f",followingCount!)
+        }
+//        print(followingCountStr)
+        
+        if followerCount! > 1050000{
+            if followerCount!%1000000 > 500000 {
+                formatFloat = "%.01f"
+            }else{
+                formatFloat = "%.00f"
+            }
+            print(followerCount!%1000000,formatFloat)
+            followerCountStr = (String(format: formatFloat!,followerCount!/1000000)+"M")
+        }else if followerCount! > 950000{
+            followerCountStr = "1M"
+        }else if followerCount! > 1070{
+            followerCountStr = (String(format: "%.01f",followerCount!/1000)+"K")
+        }else if followerCount! > 950{
+            followerCountStr = "1K"
+        }else{
+            followerCountStr = String(format:"%.00f", followerCount!)
+        }
+//        print(name!,followerCountStr!)
+
     }
 
     func logout() {

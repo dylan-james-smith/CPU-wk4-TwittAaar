@@ -1,16 +1,14 @@
 //
-//  TweetCell.swift
+//  ProfileCell.swift
 //  TwittAaar
 //
-//  Created by Dylan Smith on 2/9/16.
+//  Created by Dylan Smith on 3/2/16.
 //  Copyright © 2016 com.heydylan. All rights reserved.
 //
 
 import UIKit
 
-//protocol 
-
-class TweetCell: UITableViewCell {
+class ProfileCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -24,6 +22,66 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var favoriteBigButton: UIButton!
     @IBOutlet weak var favoriteCountLabel: UILabel!
+    
+    var user: User! {
+        didSet {
+            
+            profileImageView.setImageWithURL(NSURL(string: user.profileImageUrl!)!)
+            nameLabel.text = user.name
+            screenNameLabel.text = user.screenname
+            tweetLabel.text = tweet.text
+//            @IBOutlet weak var nameLabel: UILabel!
+//            @IBOutlet weak var screenNameLabel: UILabel!
+//            @IBOutlet weak var tweetLabel: UILabel!
+//            @IBOutlet weak var timeLabel: UILabel!
+//            @IBOutlet weak var replyButton: UIButton!
+//            @IBOutlet weak var retweetButton: UIButton!
+//            retweetBigButton: UIButton!
+//            retweetCountLabel: UILabel!
+//            favoriteButton: UIButton!
+//            favoriteBigButton: UIButton!
+//            favoriteCountLabel: UILabel!
+//            let profileImageUrl = user.profileImageUrl
+//            let backgroundImageUrl = user.backgroundImageURL
+//            
+//            let name = user.name
+//            let screenname = user.screenname
+//            let protected = user.protected;
+//            let location = user.locationString;
+//            let followingCount = user.followingCount;
+//            let followersCount = user.followersCount;
+//            
+//            if(protected == nil) {
+//                imageLockIcon.hidden = true;
+//            }
+//            
+//            nameLabel.text = String(name!);
+//            
+//            profileImageView.setImageWithURL(profileImageUrl!);
+//            backgroundImageView.setImageWithURL(NSURL(string: backgroundImageUrl!)!);
+//            profileImageView.clipsToBounds = true;
+//            profileImageView.layer.cornerRadius = 5;
+//            profileImageSuperview.layer.cornerRadius = 5;
+//            
+//            screennameLabel.text = "@" + String(screenname!);
+//            locationLabel.text = String(location!);
+//            
+//            followersCountLabel.text = shortenNumber(Double(followersCount!));
+//            followingCountLabel.text = shortenNumber(Double(followingCount!));
+//            
+//            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("profileCogMenu"));
+//            imageCogIcon.userInteractionEnabled = true;
+//            imageCogIcon.addGestureRecognizer(tapGestureRecognizer);
+//            
+//            let gradientLayer = CAGradientLayer();
+//            gradientLayer.frame = shadowEffectView.bounds;
+//            let topColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).CGColor as CGColorRef;
+//            let bottomColor = UIColor(white: 0, alpha: 0.0).CGColor as CGColorRef;
+//            gradientLayer.colors = [topColor, bottomColor];
+//            gradientLayer.locations = [0.0, 1.0];
+//            self.shadowEffectView.layer.addSublayer(gradientLayer);
+        }
+    }
     
     var tweetID: String = ""
     var tweet: Tweet! {
@@ -39,7 +97,7 @@ class TweetCell: UITableViewCell {
             retweetCountLabel.text = String(tweet.retweetCount!)
             favoriteCountLabel.text = String(tweet.favoritesCount!)
             
-//            Check for Retweet or Like
+            //            Check for Retweet or Like
             if NSUserDefaults.standardUserDefaults().boolForKey("toggleRetweet"+tweet.tweetID){
                 retweetButton.setImage(UIImage(named: "retweet-action-on"), forState: UIControlState.Normal)
                 retweetCountLabel.textColor = UIColor(red: 0x19/255, green: 0xcf/255, blue: 0x86/255, alpha: 1.0)
@@ -61,7 +119,7 @@ class TweetCell: UITableViewCell {
                 favoriteCountLabel.textColor = UIColor(red: 0xaa/255, green: 0xb8/255, blue: 0xc2/255, alpha: 1.0)
             }
             
-//          hide count text if 0
+            //          hide count text if 0
             retweetCountLabel.text! == "0" ? (retweetCountLabel.hidden = true) : (retweetCountLabel.hidden = false)
             favoriteCountLabel.text! == "0" ? (favoriteCountLabel.hidden = true) : (favoriteCountLabel.hidden = false)
             
@@ -69,74 +127,72 @@ class TweetCell: UITableViewCell {
         }
     }
     
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-//        NSLog(">>>awakeFromNib")
+        //        NSLog(">>>awakeFromNib")
         profileImageView.layer.cornerRadius = 4
         profileImageView.clipsToBounds = true
         
         
-//        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
+        //        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
     }
     
-//    func onProfileImageViewTap(){
-//        print("I've been tapped", tweet.user?.name)
-//    }
+    //    func onProfileImageViewTap(){
+    //        print("I've been tapped", tweet.user?.name)
+    //    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        NSLog(">>>layoutSubviews")
+        //        NSLog(">>>layoutSubviews")
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-//        NSLog(">>>setSelected")
-
+        //        NSLog(">>>setSelected")
+        
         // Configure the view for the selected state
     }
-    @IBAction func onProfileImage(sender: AnyObject) {
-        print("I've been tapped:", (tweet.user!.name)!)
-    }
+
     
     @IBAction func onRetweet(sender: UIButton) {
-//        NSLog(">>>onRetweet")
+        //        NSLog(">>>onRetweet")
         if NSUserDefaults.standardUserDefaults().boolForKey("toggleRetweet"+tweet.tweetID) {
             retweetButton.setImage(UIImage(named: "retweet-action"), forState: UIControlState.Normal)
             retweetCountLabel.textColor =  UIColor(red: 0xaa/255, green: 0xb8/255, blue: 0xc2/255, alpha: 1.0)
             retweetCountLabel.text = String(tweet.retweetCount!)
             retweetCountLabel.text! == "0" ? (retweetCountLabel.hidden = true) : (retweetCountLabel.hidden = false)
-//            print(">>> toggle retwee off (-1)")
+            //            print(">>> toggle retwee off (-1)")
             NSUserDefaults.standardUserDefaults().setBool(false, forKey:"toggleRetweet"+tweet.tweetID)
         }else{
             retweetButton.setImage(UIImage(named: "retweet-action-on"), forState: UIControlState.Normal)
             retweetCountLabel.textColor =  UIColor(red: 0x19/255, green: 0xcf/255, blue: 0x86/255, alpha: 1.0)
             retweetCountLabel.text = String(Int(tweet.retweetCount!) + 1)
             retweetCountLabel.hidden = false
-//            print(">>> toggle retweet on (+1)")
+            //            print(">>> toggle retweet on (+1)")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey:"toggleRetweet"+tweet.tweetID)
         }
     }
     
     @IBAction func onFavorite(sender: UIButton) {
-//        NSLog(">>>onFavorite")
+        //        NSLog(">>>onFavorite")
         if NSUserDefaults.standardUserDefaults().boolForKey("toggleFavorite"+tweet.tweetID) {
             favoriteButton.setImage(UIImage(named: "like-action"), forState: UIControlState.Normal)
             favoriteCountLabel.textColor =  UIColor(red: 0xaa/255, green: 0xb8/255, blue: 0xc2/255, alpha: 1.0)
             favoriteCountLabel.text = String(tweet.favoritesCount!)
             favoriteCountLabel.text! == "0" ? (favoriteCountLabel.hidden = true) : (favoriteCountLabel.hidden = false)
-//            print(">>> toggle faviorite off -1")
+            //            print(">>> toggle faviorite off -1")
             NSUserDefaults.standardUserDefaults().setBool(false, forKey:"toggleFavorite"+tweet.tweetID)
         }else{
             favoriteButton.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Normal)
             favoriteCountLabel.textColor =  UIColor(red: 0xe8/255, green: 0x1c/255, blue: 0x4f/255, alpha: 1.0)
             favoriteCountLabel.text = String(Int(tweet.favoritesCount!) + 1)
             favoriteCountLabel.hidden = false
-//            print(">>> toggle faviorite on +1")
+            //            print(">>> toggle faviorite on +1")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey:"toggleFavorite"+tweet.tweetID)
         }
     }
     
     
-
+    
 }

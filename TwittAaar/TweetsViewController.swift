@@ -45,9 +45,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
 //    override func viewWillAppear(animated: Bool) {
 //        print("viewWillAppear")
-//        
-//        self.navigationController!.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
-////        self.navigationController!.view.backgroundColor = UIColor.whiteColor()
 //    }
     
 
@@ -80,9 +77,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func onRefresh(){
 //            NSLog(">>>onRefresh")
         TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
-            self.tweets = tweets
-            self.tableView.reloadData()
+//            self.tweets = tweets
+//            self.tableView.reloadData()
             self.refreshControl.endRefreshing()
+            
         }
     }
     
@@ -90,10 +88,24 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func onLogout(sender: AnyObject) {
         User.currentUser?.logout()
     }
+    
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        super.prepareForSegue(UIStoryboardSegue, sender: AnyObject?)
+        if segue.identifier == "profileImage2View" {
+            let button = sender as! UIButton
+            let view = button.superview!
+            let cell = view.superview as! TweetCell
+            let indexPath = tableView.indexPathForCell(cell)
+            let tweet = tweets![indexPath!.row]
+            let user = tweet.user
+            let destViewController = segue.destinationViewController as! ProfileViewController
+            destViewController.tweet = tweet
+            destViewController.user = user
+        }
         let backItem = UIBarButtonItem()
         backItem.title = ""
+        backItem.image = UIImage(named: "Icon_white")
         navigationItem.backBarButtonItem = backItem
     }
 

@@ -39,20 +39,62 @@ class TwitterClient: BDBOAuth1SessionManager {
         
     }
     
-//    @available(iOS, deprecated=8.0) //suppress warning on deprecated GET from BDBOAuth1Manager's GET method (thanks Sarn!)
-//    func favoritesCreateWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
-//        
-//        GET("1.1/favorites/create.json", parameters: params, success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
-//            let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
-//            //            print(tweets)
-//            completion(tweets: tweets, error: nil)
-//            
-//            }, failure: { (operation:NSURLSessionDataTask?, error: NSError) -> Void in
-//                print("home timeline: ERROR")
-//                completion(tweets: nil, error: error)
-//        })
-//        
-//    }
+    func userTimeline(user: User, maxId: Int? = nil, success: ([Tweet]) -> (), failure: (NSError) -> ()) {
+        var params = ["count": 10]
+        params["user_id"] = user.id
+        if(maxId != nil) {
+            params["max_id"] = maxId
+        }
+        
+        GET("1.1/statuses/user_timeline.json", parameters: params, progress: nil, success: { (task: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            let dictionaries = response as! [NSDictionary]
+            let tweets = Tweet.tweetsWithArray(dictionaries)
+            
+            success(tweets)
+            }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                failure(error)
+        })
+    }
+    
+    
+    @available(iOS, deprecated=8.0) //suppress warning (thanks Sarn!)
+    func favoriteStatus(tweetID: Int, completion: (error: NSError?) -> ()) {
+        POST("/1.1/favorites/create.json", parameters: ["id": tweetID], success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            completion(error: nil)
+            }, failure: { (operation: NSURLSessionDataTask?, err: NSError!) -> Void in
+                completion(error: err)
+        })
+    }
+    
+    @available(iOS, deprecated=8.0) //suppress warning (thanks Sarn!)
+    func unfavoriteStatus(tweetID: Int, completion: (error: NSError?) -> ()) {
+        POST("/1.1/favorites/destroy.json", parameters: ["id": tweetID], success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            completion(error: nil)
+            }, failure: { (operation: NSURLSessionDataTask?, err: NSError!) -> Void in
+                completion(error: err)
+        })
+    }
+    
+    @available(iOS, deprecated=8.0) //suppress warning (thanks Sarn!)
+    func retweetStatus(tweetID: Int, completion: (retweetedTweetID: Int?, error: NSError?) -> ()) {
+        POST("/1.1/statuses/retweet/\(tweetID).json", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            //let tweetArray = Tweet.tweetsfromJSON(JSON(response))
+            //completion(retweetedTweetID: tweetArray.first?.tweetID, error: nil)
+            }, failure: { (operation: NSURLSessionDataTask?, err: NSError!) -> Void in
+                completion(retweetedTweetID: nil, error: err)
+        })
+    }
+    
+    @available(iOS, deprecated=8.0) //suppress warning (thanks Sarn!)
+    func unretweetStatus(retweetedTweetID: Int, completion: (error: NSError?) -> ()) {
+        POST("/1.1/statuses/destroy/\(retweetedTweetID).json", parameters: nil, success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+            completion(error: nil)
+            }, failure: { (operation: NSURLSessionDataTask?, err: NSError!) -> Void in
+                completion(error: err)
+        })
+    }
+    
+    
     
     func loginWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
         
