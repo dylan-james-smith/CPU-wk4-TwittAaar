@@ -18,11 +18,12 @@ class User: NSObject {
     var dictionary: NSDictionary
     var name: String?
     var screenname: String?
-    var profileImageUrl: String?
+    var profileImageUrl: NSURL?
     var backgroundImageURL: String?
     var tagline: String?
     var location: String?
-    var website: AnyObject?
+    var website: String?
+    var websiteURL: String?
     var followingCount: Float?
     var followingCountStr: String?
     var followerCount: Float?
@@ -37,20 +38,27 @@ class User: NSObject {
         
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
-        profileImageUrl = dictionary["profile_image_url_https"] as? String
+//        profileImageUrl = dictionary["profile_image_url_https"] as? String
+        let profileUrlString = dictionary["profile_image_url_https"] as? String
+        profileImageUrl = NSURL(string: (profileUrlString?.stringByReplacingOccurrencesOfString("normal", withString: "bigger"))!)
         backgroundImageURL = dictionary["profile_banner_url"] as? String
         tagline = dictionary["description"] as? String
         location = dictionary["location"] as? String
         
-        if let entities = dictionary["entities"] as? NSDictionary{
-            if let tempURL = entities["url"] as? NSDictionary{
-                if let tempURLS = tempURL["urls"] as? NSDictionary{
-                    website = tempURLS["display_url"] //as? String
-                    print("tempURLS",(tempURLS), "web",website)
+        if let entitiesDict = dictionary["entities"] as? NSDictionary {
+            if let urlDict = entitiesDict["url"] as? NSDictionary {
+                if let urlsArray = urlDict["urls"] as? NSArray {
+                    if let urlsDict = urlsArray[0] as? NSDictionary {
+                        website = urlsDict["display_url"] as? String
+                        websiteURL = urlsDict["expanded_url"] as? String
+//                        print(website, websiteURL)
+//                        print("urlsDict",(urlsDict),"WEBSITE:",(website!))
+                    }
+//                    print("urlsArray",(urlsArray))
                 }
-                print("tempURL", (tempURL))
+//                print("urlDict", (urlDict))
             }
-            print("entit",(entities))
+//            print("entitiesDict",(entitiesDict))
         }
         
         
@@ -61,7 +69,7 @@ class User: NSObject {
         id = dictionary["id"] as? Int
 
 //        print("V",  (dictionary))
-//        print("L", (dictionary))
+        print("L", (dictionary))
 
         if followingCount! > 1050000{
             if followingCount!%1000000 > 500000 {
@@ -69,7 +77,7 @@ class User: NSObject {
             }else{
                 formatFloat = "%.00f"
             }
-            print(followingCount!%1000000,formatFloat)
+//            print(name, followingCount!%1000000,formatFloat)
             followerCountStr = (String(format: formatFloat!,followingCount!/1000000)+"M")
         }else if followingCount! > 950000{
             followingCountStr = "1M"
@@ -88,7 +96,7 @@ class User: NSObject {
             }else{
                 formatFloat = "%.00f"
             }
-            print(followerCount!%1000000,formatFloat)
+//            print(name,followerCount!%1000000,formatFloat)
             followerCountStr = (String(format: formatFloat!,followerCount!/1000000)+"M")
         }else if followerCount! > 950000{
             followerCountStr = "1M"

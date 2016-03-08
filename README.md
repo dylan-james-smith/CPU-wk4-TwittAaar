@@ -74,7 +74,7 @@ The following **required** functionality is completed:
 - [ ] Profile page:
 - [ ] Contains the user header view
 - [ ] Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Home Timeline: Tapping on a user image should bring up that user's profile page
+- [x] Home Timeline: Tapping on a user image should bring up that user's profile page
 - [ ] Compose Page: User can compose a new tweet by tapping on a compose button.
 
 The following **optional** features are implemented:
@@ -85,14 +85,16 @@ The following **optional** features are implemented:
 - [ ] Implement the paging view for the user description.
 - [ ] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
 - [ ] Pulling down the profile page should blur and resize the header image.
-- [ ] Account switching
-- [ ] Long press on tab bar to bring up Account view with animation
-- [ ] Tap account to switch to
-- [ ] Include a plus button to Add an Account
+- [-] Account switching
+- [-] Long press on tab bar to bring up Account view with animation
+- [-] Tap account to switch to
+- [x] Include a plus button to Add an Account
 - [ ] Swipe to delete an account
 
 The following **additional** features are implemented:
 
+- [x] Added website and location to Profile view
+- [x] made Follower and Following counts truncate to K and M e.g. 1.3K 2.7M 15K
 - [ ] List anything else that you can get done to improve the app functionality!
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):

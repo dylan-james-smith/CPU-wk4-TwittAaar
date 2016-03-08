@@ -1,21 +1,18 @@
 //
-//  TweetsNavigationController.swift
+//  DetailsViewController.swift
 //  TwittAaar
 //
-//  Created by Dylan Smith on 2/14/16.
+//  Created by Dylan Smith on 3/8/16.
 //  Copyright © 2016 com.heydylan. All rights reserved.
 //
 
 import UIKit
 
-class TweetsNavigationController: UINavigationController {
+class DetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        let icon = UIImage(named: "Icon.png")
-//        let iconImageView = UIImageView(image: icon)
-//        self.navigationItem.titleView = iconImageView
         // Do any additional setup after loading the view.
     }
 

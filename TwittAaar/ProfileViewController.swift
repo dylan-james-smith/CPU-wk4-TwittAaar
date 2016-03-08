@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var tweets: [Tweet]?
     var tweet: Tweet!
     var user: User!
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileBackgroundImageView: UIImageView!
@@ -36,7 +37,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileImageView.layer.cornerRadius = 4
         profileImageView.clipsToBounds = true
         profileImageView.backgroundColor = UIColor.whiteColor()
-        profileImageView.setImageWithURL(NSURL(string: (user.profileImageUrl)!)!)
+        profileImageView.setImageWithURL(user.profileImageUrl!)
         
         if user.backgroundImageURL != nil{
             profileBackgroundImageView.setImageWithURL(NSURL(string: (user.backgroundImageURL)!)!)
@@ -45,7 +46,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileScreennameLabel.text = "@"+(user.screenname)!
         profileTagLabel.text = user.tagline
         profileLocationLabel.text = user.location
-//        profileWebsiteLabel.text = user.website
+        profileWebsiteLabel.text = user.website
         profileFollowingCountLabel.text = user.followingCountStr
         profileFollowersCountLabel.text = user.followerCountStr
         
@@ -64,7 +65,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
             self.tweets = tweets
-//            self.tableView.reloadData()
+            self.tableView.reloadData()
         }
 
 
